@@ -33,7 +33,7 @@ function RouteForm({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+    <form onSubmit={handleSubmit}>
       <div className="flex flex-col space-y-4">
         <div className="relative">
           <input
@@ -97,7 +97,7 @@ function RouteForm({ onSubmit }) {
           type="submit"
           className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
         >
-          Check Route Weather
+          Yol Durumunu Kontrol Et
         </button>
       </div>
     </form>
