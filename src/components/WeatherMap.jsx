@@ -5,40 +5,20 @@ import {
   OverlayView
 } from '@react-google-maps/api';
 import { useState } from 'react';
+import {
+  mapContainerStyle,
+  defaultCenter,
+  createMarkerContainerStyle,
+  createTempLabelStyle,
+  darkMapStyle
+} from './mapStyles';
 
-const WeatherMap = ({ route, weatherPoints }) => {
+const WeatherMap = ({ route, weatherPoints, isDarkMode }) => {
   const [selectedPoint, setSelectedPoint] = useState(null);
-  console.info('weatherPoints', weatherPoints);
 
-  const mapContainerStyle = {
-    width: '100%',
-    height: '600px' // Made it a bit taller
-  };
-
-  const center = route?.center || {
-    lat: 39.9334,
-    lng: 32.8597
-  };
-
-  const markerContainerStyle = {
-    backgroundColor: 'white',
-    padding: '4px',
-    borderRadius: '8px',
-    border: '1px solid #666',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '4px',
-    width: '40px',
-    height: '60px',
-  };
-
-  // Temperature label style
-  const tempLabelStyle = {
-    color: '#000000',
-    fontSize: '12px',
-    fontWeight: 'bold',
-  };
+  const center = route?.center || defaultCenter;
+  const markerContainerStyle = createMarkerContainerStyle(isDarkMode);
+  const tempLabelStyle = createTempLabelStyle(isDarkMode);
 
   return (
     <div className="rounded-lg overflow-hidden shadow-lg h-fit">
@@ -46,6 +26,11 @@ const WeatherMap = ({ route, weatherPoints }) => {
         mapContainerStyle={mapContainerStyle}
         zoom={7}
         center={center}
+        options={{
+          styles: isDarkMode ? [...darkMapStyle] : [],
+          disableDefaultUI: true,
+          zoomControl: true,
+        }}
       >
         {route && (
           <Polyline

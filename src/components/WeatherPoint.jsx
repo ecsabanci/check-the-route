@@ -1,5 +1,4 @@
-const WeatherPoint = ({ data, time }) => {
-  console.info(data);
+const WeatherPoint = ({ data }) => {
     return (
       <div className="bg-white rounded-lg shadow p-4 hover:shadow-md transition-shadow">
         <h3 className="font-semibold text-lg">{data.city}</h3>

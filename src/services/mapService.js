@@ -43,10 +43,14 @@ export const getRoute = async (startPoint, endPoint) => {
     };
 
     const waypoints = calculateWaypoints(route.path);
+    const duration = result.routes[0].legs[0].duration.text;
+    const distance = result.routes[0].legs[0].distance.text;
 
     return {
       route,
-      waypoints
+      waypoints,
+      duration,
+      distance
     };
   } catch (error) {
     console.error('Error getting route:', error);
@@ -74,8 +78,6 @@ const geocodeAddress = async (address) => {
     throw error;
   }
 };
-
-// Keep the existing calculateWaypoints and decodePolyline functions...
 
 const processRouteResponse = (data) => {
   if (!data.routes[0]) throw new Error('No route found');
@@ -107,7 +109,6 @@ const calculateWaypoints = (path) => {
   return waypoints;
 };
 
-// Add this function to your mapService.js file
 const decodePolyline = (encoded) => {
     const points = [];
     let index = 0;
