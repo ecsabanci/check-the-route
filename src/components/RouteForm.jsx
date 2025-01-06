@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { ArrowRightIcon } from '@heroicons/react/24/solid';
 function RouteForm({ onSubmit }) {
   const [startPoint, setStartPoint] = useState('');
   const [endPoint, setEndPoint] = useState('');
@@ -38,20 +38,20 @@ function RouteForm({ onSubmit }) {
         <div className="relative">
           <input
             type="text"
-            placeholder="Starting Point"
+            placeholder="Başlangıç Noktası"
             value={startPoint}
             onChange={(e) => {
               setStartPoint(e.target.value);
               handlePlaceSearch(e.target.value, setStartSuggestions);
             }}
-            className="p-2 border rounded w-full"
+            className="p-2 border dark:border-emerald-900 rounded w-full dark:bg-gray-900 outline-none"
           />
           {startSuggestions.length > 0 && (
-            <ul className="absolute z-10 w-full bg-white border rounded-b shadow-lg max-h-60 overflow-y-auto">
+            <ul className="absolute z-10 w-full bg-white border rounded-b shadow-lg max-h-60 overflow-y-auto dark:bg-gray-700">
               {startSuggestions.map((suggestion) => (
                 <li
                   key={suggestion.place_id}
-                  className="p-2 hover:bg-gray-100 cursor-pointer"
+                  className="p-2 cursor-pointer dark:hover:bg-gray-600"
                   onClick={() => {
                     setStartPoint(suggestion.description);
                     setStartSuggestions([]);
@@ -67,20 +67,20 @@ function RouteForm({ onSubmit }) {
         <div className="relative">
           <input
             type="text"
-            placeholder="Destination"
+            placeholder="Bitiş Noktası"
             value={endPoint}
             onChange={(e) => {
               setEndPoint(e.target.value);
               handlePlaceSearch(e.target.value, setEndSuggestions);
             }}
-            className="p-2 border rounded w-full"
+            className="p-2 border dark:border-emerald-900 rounded w-full dark:bg-gray-900 outline-none"
           />
           {endSuggestions.length > 0 && (
-            <ul className="absolute z-10 w-full bg-white border rounded-b shadow-lg max-h-60 overflow-y-auto">
+            <ul className="absolute z-10 w-full bg-white border rounded-b shadow-lg max-h-60 overflow-y-auto dark:bg-gray-700">
               {endSuggestions.map((suggestion) => (
                 <li
                   key={suggestion.place_id}
-                  className="p-2 hover:bg-gray-100 cursor-pointer"
+                  className="p-2 cursor-pointer dark:hover:bg-gray-600"
                   onClick={() => {
                     setEndPoint(suggestion.description);
                     setEndSuggestions([]);
@@ -95,9 +95,10 @@ function RouteForm({ onSubmit }) {
 
         <button
           type="submit"
-          className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+          className="bg-blue-500 text-white p-2 rounded bg-emerald-600 flex items-center justify-center group"
         >
           Yol Durumunu Kontrol Et
+          <ArrowRightIcon className="h-4 w-4 text-white ml-2 transition-transform group-hover:translate-x-1" />
         </button>
       </div>
     </form>

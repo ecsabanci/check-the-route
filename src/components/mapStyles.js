@@ -9,20 +9,27 @@ export const defaultCenter = {
 };
 
 export const createMarkerContainerStyle = (isDarkMode) => ({
-  backgroundColor: isDarkMode ? '#ffffff' : '#242f3e',
-  padding: '4px',
-  borderRadius: '8px',
-  border: '1px solid #666',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: '4px',
-  width: '40px',
-  height: '60px',
-});
+    backgroundColor: isDarkMode ? 'rgba(0, 0, 0, 0.65)' : 'rgba(255, 255, 255, 0.45)',
+    backdropFilter: 'blur(8px)',
+    WebkitBackdropFilter: 'blur(8px)', // for Safari support
+    padding: '4px',
+    borderRadius: '8px',
+    border: isDarkMode 
+      ? '1px solid rgba(255, 255, 255, 0.2)'
+      : '1px solid rgba(0, 0, 0, 0.1)',
+    boxShadow: isDarkMode
+      ? '0 4px 6px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+      : '0 4px 6px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.7)',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '4px',
+    width: '40px',
+    height: '60px',
+  });
 
 export const createTempLabelStyle = (isDarkMode) => ({
-  color: isDarkMode ? '#000000' : '#ffffff',
+  color: isDarkMode ? '#ffffff' : 'rgb(100, 100, 100, 1)',
   fontSize: '12px',
   fontWeight: 'bold',
 });
